@@ -18,12 +18,13 @@ class ArticleList extends React.Component {
     get body() {
         return this.props.articles.map(article => 
             <li key={article.id}>
-                <Article article={article} toggleOpen={this.toggleArticle} />
+                <Article article={article} isOpen={this.state.articleId === article.id} toggleOpen={this.toggleArticle(article.id)} />
             </li>
         )
     }
 
     toggleArticle = (id) => {
+        console.log('toggleArticle');
         this.setState({
             articleId: id
         })
