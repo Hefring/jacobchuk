@@ -8,6 +8,7 @@ class ArticleList extends React.Component {
     }
 
     render() {
+        console.log('render ArticleList');
         return (
             <ul>
                 {this.body}
@@ -18,16 +19,19 @@ class ArticleList extends React.Component {
     get body() {
         return this.props.articles.map(article => 
             <li key={article.id}>
-                <Article article={article} isOpen={this.state.articleId === article.id} toggleOpen={this.toggleArticle(article.id)} />
+                <Article 
+                    article={article} 
+                    isOpen={this.state.articleId === article.id} 
+                    toggleOpen={this.toggleArticle} 
+                />
             </li>
         )
     }
 
     toggleArticle = (id) => {
-        console.log('toggleArticle');
         this.setState({
             articleId: id
-        })
+        });
     }
 
 }

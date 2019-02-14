@@ -1,15 +1,23 @@
 import React from 'react'
 
-function Article({ article, isOpen, toggleOpen }) {
-    return (
-        <div>
+class Article extends React.PureComponent {
+    render() {
+        console.log('render Article');
+        const {article, isOpen} = this.props;
+        return (
             <div>
-                <h3>{article.title}</h3>
-                <button onClick={toggleOpen}>{isOpen ? "close" : "open"}</button>
+                <div>
+                    <h3>{article.title}</h3>
+                    <button onClick={this.handleClick}>{isOpen ? "close" : "open"}</button>
+                </div>
+                {isOpen && <section>{article.text}</section>}
             </div>
-            {isOpen && <section>article.text</section>}
-        </div>
-    )
+        )
+    }
+
+    handleClick = () => {
+        this.props.toggleOpen(this.props.article.id);
+    }
 }
 
 export default Article
